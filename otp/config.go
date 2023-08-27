@@ -1,10 +1,10 @@
 package otp
 
 type Config struct {
-	BaseUrl     string
-	Application string
-	Secret      string
-	DevMode     bool
+	baseUrl     string
+	application string
+	secret      string
+	devMode     bool
 }
 
 func NewConfig() *Config {
@@ -12,21 +12,21 @@ func NewConfig() *Config {
 }
 
 func (c *Config) WithBaseUrl(baseUrl string) *Config {
-	c.BaseUrl = baseUrl
+	c.baseUrl = baseUrl
 	return c
 }
 
 func (c *Config) WithApplication(application string) *Config {
-	c.Application = application
+	c.application = application
 	return c
 }
 
 func (c *Config) WithSecret(secret string) *Config {
-	c.Secret = secret
+	c.secret = secret
 	return c
 }
 
 func (c *Config) WithDevMode(devMode bool) *Config {
-	c.DevMode = devMode
+	c.devMode = devMode
 	return c
 }

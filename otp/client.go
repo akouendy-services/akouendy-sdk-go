@@ -16,10 +16,10 @@ type Client struct {
 func NewClient(config Config) (client *Client) {
 	client = &Client{
 		Client: req.C().
-			SetBaseURL(config.BaseUrl).
+			SetBaseURL(config.baseUrl).
 			SetCommonErrorResult(&Error{}).
 			SetUserAgent("AkouendyPay").
-			SetCommonBasicAuth(config.Application, config.Secret).
+			SetCommonBasicAuth(config.application, config.secret).
 			EnableDumpEachRequest().
 			OnAfterResponse(func(client *req.Client, resp *req.Response) error {
 				if resp.Err != nil { // There is an underlying error, e.g. network error or unmarshal error.
@@ -36,7 +36,7 @@ func NewClient(config Config) (client *Client) {
 				return nil
 			}),
 	}
-	if config.DevMode {
+	if config.devMode {
 		client.DevMode()
 	}
 	return client
