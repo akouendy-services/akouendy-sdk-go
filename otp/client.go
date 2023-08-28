@@ -2,6 +2,7 @@ package otp
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"strconv"
 
@@ -14,7 +15,7 @@ type Client struct {
 }
 
 func NewClient(config Config) (client *Client) {
-	client = &Client{
+	return &Client{
 		Client: req.C().
 			SetBaseURL(config.baseUrl).
 			SetCommonErrorResult(&Error{}).
@@ -36,13 +37,9 @@ func NewClient(config Config) (client *Client) {
 				return nil
 			}),
 	}
-	if config.devMode {
-		client.DevMode()
-	}
-	return client
 }
 
-func (c *Client) ListProviders(ctx context.Context) (response Response, err error) {
+func (c *Client) GetProviders(ctx context.Context) (response Response, err error) {
 	_, err = c.R().
 		SetContext(ctx).
 		SetSuccessResult(&response).
@@ -75,6 +72,10 @@ func (c *Client) Validate(ctx context.Context, validate ValidateRequest) (respon
 		SetFormData(data).
 		SetSuccessResult(&response).
 		Post("/api/otp/{id}")
+
+	if response.Status != "success" {
+		err = errors.New("Validation failed")
+	}
 	return
 }
 

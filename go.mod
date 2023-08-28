@@ -2,10 +2,7 @@ module github.com/akouendy-services/akouendy-sdk-go
 
 go 1.20
 
-require (
-	github.com/imroc/req v0.3.2
-	github.com/imroc/req/v3 v3.41.7
-)
+require github.com/imroc/req/v3 v3.41.7
 
 require (
 	github.com/andybalholm/brotli v1.0.5 // indirect

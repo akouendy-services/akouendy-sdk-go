@@ -6,9 +6,12 @@ import (
 	"github.com/google/uuid"
 )
 
+type Status string
+
 type Response struct {
-	Status string `json:"status,omitempty"`
-	Data   struct {
+	Status  string `json:"status,omitempty"`
+	Message string `json:"message,omitempty"`
+	Data    struct {
 		Namespace          string `json:"namespace,omitempty"`
 		ID                 string `json:"id,omitempty"`
 		To                 string `json:"to,omitempty"`
